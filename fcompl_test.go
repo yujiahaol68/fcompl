@@ -18,7 +18,7 @@ func check(e error) {
 	}
 }
 
-func Test_completion(t *testing.T) {
+func Test_completion_fromfile(t *testing.T) {
 	f, err := os.OpenFile("phrases.txt", os.O_RDONLY, os.ModePerm)
 	check(err)
 
@@ -50,6 +50,15 @@ func Test_completion(t *testing.T) {
 		contentsEqual(root.Find(ca.input), ca.expect)
 	}
 	log.Println(time.Since(t1))
+}
+
+func Test_completion_fromString(t *testing.T) {
+	s := "A ball in the ground\nThe bat in the sky\nThe ball hit his head\n"
+	rd := bufio.NewReader(strings.NewReader(s))
+	f := New(rd, true)
+
+	contentsEqual(f.Find("Ball"), []int{0, 2})
+	contentsEqual(f.Find("bat"), []int{1})
 }
 
 func Test_compress(t *testing.T) {
