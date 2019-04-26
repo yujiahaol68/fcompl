@@ -98,7 +98,6 @@ func (tn *TrieNode) insertPhrase(phrase string, index int) {
 func (root *TrieNode) Find(text string) []int {
 	text = strings.ToLower(text)
 	n := root
-	foundPhrases := []int{}
 	candis := strings.Split(text, " ")
 
 	for i := 0; i < len(candis); {
@@ -123,15 +122,15 @@ func (root *TrieNode) Find(text string) []int {
 			i++
 			continue
 		}
-		// go back match from root
-		n = root
+
+		break
 	}
 
 	if n != root && len(n.ContainID) != 0 {
-		log.Printf("append %v", n.ContainID)
-		foundPhrases = append(foundPhrases, n.ContainID...)
+		//log.Printf("append %v", n.ContainID)
+		return n.ContainID
 	}
-	return foundPhrases
+	return nil
 }
 
 // Compress cut the node below that no more branches to reduce the capacity of the whole tree

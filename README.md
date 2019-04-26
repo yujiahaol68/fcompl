@@ -48,8 +48,8 @@ f.find("wo shi")
 
 ```
 PASS
-coverage: 95.7% of statements
-ok  	github.com/yujiahaol68/fcompl	0.016s
+coverage: 94.4% of statements
+ok  	github.com/yujiahaol68/fcompl	1.049s	coverage: 94.4% of statements
 ```
 
 Feel free to star if this small package helps. Issue is also welcome

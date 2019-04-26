@@ -32,11 +32,13 @@ func Test_completion_fromfile(t *testing.T) {
 		expect []int
 	}{
 		{"the batman", []int{0, 7}},
+		{"any batman", []int{0, 7}},
 		{"american", []int{2, 3}},
 		{"wonder", []int{4, 5}},
 		{"A robin", []int{6}},
-		{"wonder anything", []int{}},
+		{"wonder anything", []int{4, 5}},
 		{"我", []int{8, 9}},
+		{"我是", []int{8, 9}},
 	}
 	root.print()
 
