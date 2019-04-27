@@ -232,3 +232,14 @@ func detectLang(phrase string) string {
 	}
 	return eng
 }
+
+func SetStopFilter(b bool) {
+	if b {
+		stopDict = make(map[string]bool)
+		for _, w := range stopWords {
+			stopDict[w] = true
+		}
+		return
+	}
+	stopDict = nil
+}
