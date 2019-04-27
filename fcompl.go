@@ -62,11 +62,11 @@ type TrieNode struct {
 	ContainID []int
 }
 
-func newTrieNode() *TrieNode {
+func NewTrieNode() *TrieNode {
 	return &TrieNode{make(map[string]*TrieNode), nil}
 }
 
-func (tn *TrieNode) insertPhrase(phrase string, index int) {
+func (tn *TrieNode) InsertPhrase(phrase string, index int) {
 	n := tn
 	lang := detectLang(phrase)
 	var keys []string
@@ -206,7 +206,7 @@ func New(rd *bufio.Reader, stopFilter bool) *TrieNode {
 			stopDict[w] = true
 		}
 	}
-	root := newTrieNode()
+	root := NewTrieNode()
 	id := 0
 	for {
 		phrase, err := rd.ReadString('\n')
@@ -219,7 +219,7 @@ func New(rd *bufio.Reader, stopFilter bool) *TrieNode {
 			return nil
 		}
 		phrase = strings.TrimSuffix(phrase, "\n")
-		root.insertPhrase(strings.ToLower(phrase), id)
+		root.InsertPhrase(strings.ToLower(phrase), id)
 		id++
 	}
 	return root

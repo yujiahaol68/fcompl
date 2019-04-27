@@ -10,12 +10,19 @@ Support language: English, Chinese
 
 ## Usage
 
-Insert Phrases
+Insert Phrases by reader
 
 ```go
 s := "A ball in the ground\nThe bat in the sky\nThe ball hit his head\n"
 rd := bufio.NewReader(strings.NewReader(s))
 f := fcompl.New(rd, true)   // true if you want to get rid of stopwords
+```
+
+Insert Phrases by yourself
+
+```go
+f := fcompl.NewTrieNode()
+f.InsertPhrase(lineStr, id)
 ```
 
 Find completion IDs
