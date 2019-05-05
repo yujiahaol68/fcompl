@@ -51,6 +51,12 @@ When complete Chinese phrases, you should find in its pinyin format like
 f.find("wo shi")
 ```
 
+You can also control stop word filter by
+
+```go
+fcompl.SetStopFilter(false)
+```
+
 ## Test coverage
 
 ```
