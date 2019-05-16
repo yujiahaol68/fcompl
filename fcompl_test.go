@@ -61,6 +61,10 @@ func Test_completion_fromString(t *testing.T) {
 
 	contentsEqual(f.Find("Ball"), []int{0, 2})
 	contentsEqual(f.Find("bat"), []int{1})
+	SetLimit(1)
+	contentsEqual(f.Find("Ball"), []int{0})
+	SetLimit(6)
+	contentsEqual(f.Find("Ball"), []int{0, 2})
 }
 
 func Test_compress(t *testing.T) {
@@ -105,4 +109,10 @@ func contentsEqual(input []int, expect []int) {
 			log.Fatalf("expect %v, but got %v", expect, input)
 		}
 	}
+}
+
+func Test_setLimit(t *testing.T) {
+	l := limit
+	SetLimit(-3)
+	assert.Equal(t, l, limit)
 }

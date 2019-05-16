@@ -55,11 +55,20 @@ var (
 	}
 	stopDict  map[string]bool
 	pinyinCfg = pinyin.NewArgs()
+	limit     int
 )
 
 type TrieNode struct {
 	Children  map[string]*TrieNode
 	ContainID []int
+}
+
+func SetLimit(l int) {
+	if l <= 0 {
+		log.Println("limit must greater than 0")
+		return
+	}
+	limit = l
 }
 
 func NewTrieNode() *TrieNode {
@@ -128,6 +137,9 @@ func (root *TrieNode) Find(text string) []int {
 
 	if n != root && len(n.ContainID) != 0 {
 		//log.Printf("append %v", n.ContainID)
+		if limit != 0 && len(n.ContainID) > limit {
+			return n.ContainID[:limit]
+		}
 		return n.ContainID
 	}
 	return nil
